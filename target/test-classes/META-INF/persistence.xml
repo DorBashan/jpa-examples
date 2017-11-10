@@ -7,6 +7,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>pl.mjedynak.model.Person</class>
         <class>pl.mjedynak.model.Address</class>
+        <class>pl.mjedynak.model.Hobby</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:derby:test;create=true"/>
