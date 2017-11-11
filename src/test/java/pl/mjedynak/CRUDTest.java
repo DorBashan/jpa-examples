@@ -15,7 +15,7 @@ public class CRUDTest extends AbstractTest
 
         daoJpa.insert(person);
 
-        System.out.println(daoJpa.findOne(Person.class));
+        System.out.println("Result: " + daoJpa.findOne(Person.class));
     }
 
     @Test
