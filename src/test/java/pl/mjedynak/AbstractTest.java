@@ -9,13 +9,15 @@ import javax.persistence.Persistence;
 
 public class AbstractTest
 {
-    protected EntityManagerFactory entityManagerFactory;
-    protected EntityManager entityManager;
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
+    protected DaoJpa daoJpa;
 
     @Before
     public void setUp() {
         entityManagerFactory = Persistence.createEntityManagerFactory("test");
         entityManager = entityManagerFactory.createEntityManager();
+        daoJpa = new DaoJpa(entityManager);
     }
 
     @After

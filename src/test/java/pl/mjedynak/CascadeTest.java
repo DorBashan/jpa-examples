@@ -1,6 +1,5 @@
 package pl.mjedynak;
 
-import org.junit.Before;
 import org.junit.Test;
 import pl.mjedynak.model.Address;
 import pl.mjedynak.model.Person;
@@ -9,14 +8,6 @@ import java.util.List;
 
 public class CascadeTest extends AbstractTest
 {
-    private PersonDaoJpa personDaoJpa;
-
-    @Before
-    public void setUp() {
-        super.setUp();
-        personDaoJpa = new PersonDaoJpa(entityManager);
-    }
-
     @Test
     public void persistCascadeManyToOneTest() {
         System.out.println("==PERSIST CASCADE MANY TO ONE==");
@@ -36,10 +27,10 @@ public class CascadeTest extends AbstractTest
         moshe.setName("Moshe");
         moshe.setAddress(address);
 
-        personDaoJpa.addPerson(dor);
-        personDaoJpa.addPerson(moshe);
+        daoJpa.insert(dor);
+        daoJpa.insert(moshe);
 
-        List<Person> result = personDaoJpa.findAll();
+        List<Person> result = daoJpa.findAll(Person.class);
 
         // Watch how two persons have address but we never saved it - the cascade save it for us.
         System.out.println(result.get(0));
