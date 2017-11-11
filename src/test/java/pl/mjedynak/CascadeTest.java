@@ -32,7 +32,8 @@ public class CascadeTest extends AbstractTest
 
         List<Person> result = daoJpa.findAll(Person.class);
 
-        // Watch how two persons have address but we never saved it - the cascade save it for us.
+        System.out.println("Many to One: Two persons have the same address");
+        System.out.println("Cascade: Address was saved automatically when we saved person with this address");
         System.out.println(result.get(0));
         System.out.println(result.get(1));
     }
