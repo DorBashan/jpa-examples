@@ -5,7 +5,6 @@ import java.util.List;
 
 public class DaoJpa implements DaoInterface
 {
-
     private EntityManager entityManager;
 
     public DaoJpa(EntityManager entityManager) {
@@ -16,6 +15,12 @@ public class DaoJpa implements DaoInterface
     public <T> List<T> findAll(Class<T> clazz)
     {
         return entityManager.createQuery("FROM " + clazz.getSimpleName(), clazz).getResultList();
+    }
+
+    @Override
+    public <T> T findOne(Class<T> clazz)
+    {
+        return entityManager.createQuery("FROM " + clazz.getSimpleName(), clazz).getSingleResult();
     }
 
     @Override
