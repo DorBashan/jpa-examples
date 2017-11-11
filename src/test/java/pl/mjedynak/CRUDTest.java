@@ -51,5 +51,12 @@ public class CRUDTest extends AbstractTest
         person.setAge(24);
         daoJpa.insert(person);
         System.out.println("Added: " + person);
+
+        // update
+        Person dor = daoJpa.findOne(Person.class);
+        dor.setAge(17);
+        daoJpa.update(dor);
+
+        System.out.println("Updated: " + daoJpa.findOne(Person.class));
     }
 }
