@@ -3,8 +3,6 @@ package pl.mjedynak;
 import org.junit.Test;
 import pl.mjedynak.model.Person;
 
-import java.util.List;
-
 public class CRUDTest extends AbstractTest
 {
     @Test
@@ -17,9 +15,7 @@ public class CRUDTest extends AbstractTest
 
         daoJpa.insert(person);
 
-        List<Person> result = daoJpa.findAll(Person.class);
-
-        System.out.println(result.get(0));
+        System.out.println(daoJpa.findOne(Person.class));
     }
 
     @Test
@@ -34,7 +30,7 @@ public class CRUDTest extends AbstractTest
         System.out.println("Added: " + person);
 
         // delete
-        daoJpa.delete(daoJpa.findAll(Person.class).get(0));
+        daoJpa.delete(daoJpa.findOne(Person.class));
         System.out.println("Deleted: " + person);
 
         // print if worked
