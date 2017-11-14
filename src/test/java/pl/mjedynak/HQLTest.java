@@ -7,6 +7,7 @@ import pl.mjedynak.model.Hobby;
 import pl.mjedynak.model.Person;
 
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class HQLTest extends AbstractTest
 {
@@ -94,20 +95,31 @@ public class HQLTest extends AbstractTest
 
     @Test
     public void getAllPersonsWithSoccerHobby() {
-        System.out.println(daoJpa.getEntityManager().createQuery("SELECT p FROM Person p join p.hobbies hobby " +
-                                                    "WHERE hobby.name = 'Soccer'").getResultList());
+        System.out.println("==PERSONS WITH SOCCER==");
+        List<Person> persons = daoJpa.getEntityManager().createQuery(
+                "SELECT p FROM Person p join p.hobbies hobby " +
+                    "WHERE hobby.name = 'Soccer'", Person.class).getResultList();
+
+        persons.forEach(p-> System.out.println(p.getName()));
     }
 
     @Test
     public void getAllPersonsAbove20WithSoccerHobby() {
-        System.out.println(daoJpa.getEntityManager().createQuery("SELECT p FROM Person p join p.hobbies hobby " +
-                "WHERE hobby.name = 'Soccer' AND p.age > 20").getResultList());
+        System.out.println("==PERSONS WITH SOCCER ABOVE 20==");
+        List<Person> persons = daoJpa.getEntityManager().createQuery(
+                "SELECT p FROM Person p join p.hobbies hobby " +
+                    "WHERE hobby.name = 'Soccer' AND p.age > 20", Person.class).getResultList();
+
+        persons.forEach(p-> System.out.println(p.getName()));
     }
 
     @Test
     public void getAllPersonsWhoLikeMathWithBirthDayEvent() {
-        System.out.println(daoJpa.getEntityManager().createQuery(
+        System.out.println("==PERSONS MATH AND EVENT BIRTHDAY==");
+        List<Person> persons = daoJpa.getEntityManager().createQuery(
                 "SELECT p FROM Person p join p.hobbies hobby join p.events event " +
-                "WHERE hobby.name = 'Math' AND event.name = 'Birthday'").getResultList());
+                    "WHERE hobby.name = 'Math' AND event.name = 'Birthday'", Person.class).getResultList();
+
+        persons.forEach(p-> System.out.println(p.getName()));
     }
 }
