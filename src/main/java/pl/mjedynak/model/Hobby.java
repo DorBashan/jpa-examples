@@ -6,6 +6,14 @@ import javax.persistence.*;
 @Table(name = "HOBBY")
 public class Hobby
 {
+    public Hobby() {
+
+    }
+
+    public Hobby(String name) {
+        setName(name);
+    }
+
     @Id
     @GeneratedValue
     private Long id;

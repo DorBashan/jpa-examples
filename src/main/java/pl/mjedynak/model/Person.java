@@ -1,6 +1,7 @@
 package pl.mjedynak.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,8 +22,11 @@ public class Person {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
-    @ManyToMany
-    private List<Hobby> hobbies;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private List<Hobby> hobbies = new ArrayList<>();
+
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Event> events = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -61,6 +65,8 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", address=" + address +
+                ", hobbies=" + hobbies +
+                ", events=" + events +
                 '}';
     }
 
@@ -94,6 +100,16 @@ public class Person {
     public void setHobbies(List<Hobby> hobbies)
     {
         this.hobbies = hobbies;
+    }
+
+    public List<Event> getEvents()
+    {
+        return events;
+    }
+
+    public void setEvents(List<Event> events)
+    {
+        this.events = events;
     }
 }
 
