@@ -1,5 +1,6 @@
 package pl.mjedynak;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 public interface DaoInterface
@@ -13,4 +14,6 @@ public interface DaoInterface
     void update(Object object);
 
     void delete(Object object);
+
+    EntityManager getEntityManager();
 }

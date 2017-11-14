@@ -46,4 +46,10 @@ public class DaoJpa implements DaoInterface
         entityManager.remove(object);
         entityManager.getTransaction().commit();
     }
+
+    @Override
+    public EntityManager getEntityManager()
+    {
+        return entityManager;
+    }
 }
