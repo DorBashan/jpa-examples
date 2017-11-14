@@ -15,13 +15,9 @@ public class HQLTest extends AbstractTest
     public void setUp() {
         super.setUp();
 
-        Person dor = createDor();
-        Person moshe = createMoshe();
-        Person tomer = createTomer();
-
-        daoJpa.insert(dor);
-        daoJpa.insert(moshe);
-        daoJpa.insert(tomer);
+        daoJpa.insert(createDor());
+        daoJpa.insert(createMoshe());
+        daoJpa.insert(createTomer());
     }
 
     private Person createTomer()
@@ -98,7 +94,8 @@ public class HQLTest extends AbstractTest
         System.out.println("==PERSONS WITH SOCCER==");
         List<Person> persons = daoJpa.getEntityManager().createQuery(
                 "SELECT p FROM Person p join p.hobbies hobby " +
-                    "WHERE hobby.name = 'Soccer'", Person.class).getResultList();
+                    "WHERE hobby.name = :hobbyName", Person.class)
+                .setParameter("hobbyName", "Soccer").getResultList();
 
         persons.forEach(p-> System.out.println(p.getName()));
     }
@@ -108,7 +105,9 @@ public class HQLTest extends AbstractTest
         System.out.println("==PERSONS WITH SOCCER ABOVE 20==");
         List<Person> persons = daoJpa.getEntityManager().createQuery(
                 "SELECT p FROM Person p join p.hobbies hobby " +
-                    "WHERE hobby.name = 'Soccer' AND p.age > 20", Person.class).getResultList();
+                    "WHERE hobby.name = :hobbyName AND p.age > :age", Person.class)
+                .setParameter("hobbyName", "Soccer")
+                .setParameter("age", 20).getResultList();
 
         persons.forEach(p-> System.out.println(p.getName()));
     }
@@ -118,7 +117,9 @@ public class HQLTest extends AbstractTest
         System.out.println("==PERSONS MATH AND EVENT BIRTHDAY==");
         List<Person> persons = daoJpa.getEntityManager().createQuery(
                 "SELECT p FROM Person p join p.hobbies hobby join p.events event " +
-                    "WHERE hobby.name = 'Math' AND event.name = 'Birthday'", Person.class).getResultList();
+                    "WHERE hobby.name = :hobbyName AND event.name = :eventName", Person.class)
+                .setParameter("hobbyName", "Math")
+                .setParameter("eventName", "Birthday").getResultList();
 
         persons.forEach(p-> System.out.println(p.getName()));
     }
