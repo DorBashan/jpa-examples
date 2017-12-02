@@ -35,7 +35,7 @@ public class HQLTest extends AbstractTest
         tomer.getEvents().add(tomerBirthday);
 
         Event tomerGraduation = new Event();
-        tomerGraduation.setDate(new GregorianCalendar(1994, 4, 8).getTime());
+        tomerGraduation.setDate(new GregorianCalendar(2020, 4, 8).getTime());
         tomerGraduation.setName("Graduation");
         tomerGraduation.setPerson(tomer);
         tomer.getEvents().add(tomerGraduation);
@@ -58,7 +58,7 @@ public class HQLTest extends AbstractTest
         moshe.getEvents().add(mosheBirthday);
 
         Event mosheBarMitza = new Event();
-        mosheBarMitza.setDate(new GregorianCalendar(1997, 7, 9).getTime());
+        mosheBarMitza.setDate(new GregorianCalendar(2014, 7, 9).getTime());
         mosheBarMitza.setName("Bar Mitza");
         mosheBarMitza.setPerson(moshe);
         moshe.getEvents().add(mosheBarMitza);
